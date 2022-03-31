@@ -6,4 +6,4 @@ Il primo giocatore a raggiungere la fine ottiene la vittoria, è possibile sping
 
 Livello 1
 
-![image](https://github.com/Francesco-Tamburini/DeathRun-TamburiniVincenziFontana/tree/main/Photos/levels.png)
+![image](>https://github.com/Francesco-Tamburini/DeathRun-TamburiniVincenziFontana/blob/main/Photos/levels.png?raw=true)
