@@ -4,4 +4,4 @@ Gioco in prima persona, in cui ogni giocatore deve superare diversi ostacoli per
 Ogni giocatore dopo la morte è riportato all'inizio.
 Il primo giocatore a raggiungere la fine ottiene la vittoria, è possibile spingere altri giocatori per sabotare la loro corsa.
  
-![alt text](https://github.com/Francesco-Tamburini/DeathRun-TamburiniVincenziFontana/tree/main/Photos/levels.png)
+![levels](https://github.com/Francesco-Tamburini/DeathRun-TamburiniVincenziFontana/tree/main/Photos/levels.png)
