@@ -1,0 +1,7 @@
+Websocket su unity (con NodeJs): https://youtu.be/13HnJPstnDM
+Altro metodo WS su Unity (Con codice su github): https://youtu.be/osANZ9aigIg
+Esempio di gioco multiplayer Unity : https://ahmedschrute.medium.com/unity-multiplayer-example-fd84bfe0d31d
+Full websocket client for Unity (esempio in risposta da un utente): https://gamedev.stackexchange.com/questions/148975/websockets-server-for-unity3d
+Deploy a Game server on RedHat Openshift(IBM): https://developer.ibm.com/articles/deploy-a-game-server-on-red-hat-openshift/
+Informazioni su RedHat Openshift: https://youtu.be/KTN_QBuDplo
+
