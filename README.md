@@ -5,5 +5,4 @@ Ogni giocatore dopo la morte è riportato all'inizio.
 Il primo giocatore a raggiungere la fine ottiene la vittoria, è possibile spingere altri giocatori per sabotare la loro corsa.
 
 Livello 1
-
-![image](>https://github.com/Francesco-Tamburini/DeathRun-TamburiniVincenziFontana/blob/main/Photos/levels.png?raw=true)
+![levels](https://user-images.githubusercontent.com/70216190/161116924-d784edb4-eb39-49d7-8b67-fb4ab312e570.png)
