@@ -1,5 +1,6 @@
 using System;
 
+//dati del player inviati al socket
 [Serializable]
 public struct PlayerData
 {
