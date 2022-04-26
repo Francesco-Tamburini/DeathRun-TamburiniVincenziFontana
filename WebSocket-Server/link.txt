@@ -1,1 +1,4 @@
 https://opensource.com/article/18/6/git-reset-revert-rebase-commands
+
+
+https://stackoverflow.com/questions/4114095/how-do-i-revert-a-git-repository-to-a-previous-commit
