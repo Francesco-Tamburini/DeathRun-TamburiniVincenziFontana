@@ -1,0 +1,1 @@
+https://opensource.com/article/18/6/git-reset-revert-rebase-commands
