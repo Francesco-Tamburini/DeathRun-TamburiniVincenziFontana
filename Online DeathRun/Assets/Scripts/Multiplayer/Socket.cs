@@ -14,7 +14,7 @@ public class Socket : MonoBehaviour
     void Start()
     {
 
-        socket = new WebSocket("ws://localhost:8080");
+        socket = new WebSocket("ws://deathrun-server.glitch.me");
         //socket = new WebSocket("ws://websocket-starter-code-multiplayer-websocket-app.bsh-serverconnect-b3c-4x1-162e406f043e20da9b0ef0731954a894-0000.us-south.containers.appdomain.cloud/");
         socket.Connect();
 
