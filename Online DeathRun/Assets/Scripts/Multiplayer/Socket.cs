@@ -10,24 +10,29 @@ public class Socket : MonoBehaviour
     public GameObject player;
     public PlayerData playerData;
 
-    //La funzione start viene chiamata all'avvio del programma
+    // Start is called before the first frame update
     void Start()
     {
 
-        socket = new WebSocket("ws://localhost:8080");
+        socket = new WebSocket("ws://deathrun-server.glitch.me");
+        //socket = new WebSocket("ws://websocket-starter-code-multiplayer-websocket-app.bsh-serverconnect-b3c-4x1-162e406f043e20da9b0ef0731954a894-0000.us-south.containers.appdomain.cloud/");
         socket.Connect();
 
         //WebSocket onMessage function
         socket.OnMessage += (sender, e) =>
         {
+
+            //If received data is type text...
             if (e.IsText)
             {
+                //Debug.Log("IsText");
+                //Debug.Log(e.Data);
                 JObject jsonObj = JObject.Parse(e.Data);
 
-                //Ottenimento dell'id del server
+                //Get Initial Data server ID data (From intial serverhandshake
                 if (jsonObj["id"] != null)
                 {
-                    //conversione di playerdata
+                    //Convert Intial player data Json (from server) to Player data object
                     PlayerData tempPlayerData = JsonUtility.FromJson<PlayerData>(e.Data);
                     playerData = tempPlayerData;
                     Debug.Log("player ID is " + playerData.id);
@@ -38,6 +43,7 @@ public class Socket : MonoBehaviour
 
         };
 
+        //If server connection closes (not client originated)
         socket.OnClose += (sender, e) =>
         {
             Debug.Log(e.Code);
@@ -46,24 +52,26 @@ public class Socket : MonoBehaviour
         };
     }
 
-    //La funzione update viene chiamata una volta per frame
+    // Update is called once per frame
     void Update()
     {
+        //Debug.Log(player.transform.position);
         if (socket == null)
         {
             return;
         }
 
-        //Se il player viene caricato correttamente vengono inviati i dati al server
+        //If player is correctly configured, begin sending player data to server
         if (player != null && playerData.id != "")
         {
-            //Ottenimento della posizione del player
+            //Grab player current position and rotation data
             playerData.xPos = player.transform.position.x;
             playerData.yPos = player.transform.position.y;
             playerData.zPos = player.transform.position.z;
 
-            System.DateTime epochStart = new System.DateTime(1970, 1, 1, 8, 0, 0, System.DateTimeKind.Utc);
+            System.DateTime epochStart =  new System.DateTime(1970, 1, 1, 8, 0, 0, System.DateTimeKind.Utc);
             double timestamp = (System.DateTime.UtcNow - epochStart).TotalSeconds;
+            //Debug.Log(timestamp);
             playerData.timestamp = timestamp;
 
             string playerDataJSON = JsonUtility.ToJson(playerData);
@@ -72,14 +80,14 @@ public class Socket : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.M))
         {
-            string messageJSON = "{\"message\": \"Messaggio dal client\"}";
+            string messageJSON = "{\"message\": \"Some Message From Client\"}";
             socket.Send(messageJSON);
         }
     }
 
     private void OnDestroy()
     {
-        //chiusura del socket con chiusura dell'app
+        //Close socket when exiting application
         socket.Close();
     }
 
