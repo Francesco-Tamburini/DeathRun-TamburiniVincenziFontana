@@ -20,7 +20,7 @@ public class Socket : MonoBehaviour
         socket.OnMessage += (sender, e) =>
         {
 
-            //If received data is type text...
+            //se il tipo di dato è testo
             if (e.IsText)
             {
                 JObject jsonObj = JObject.Parse(e.Data);
