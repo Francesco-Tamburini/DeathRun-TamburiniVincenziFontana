@@ -5,7 +5,7 @@ const wss = new WebSocket.WebSocketServer({ port: 8080 }, () => {
     console.log('server started')
 })
 
-//Object that stores player data 
+//oggetto che contiene i dati del player (presi da file esterno)
 var playersData = {
     "type": "playerData"
 }
