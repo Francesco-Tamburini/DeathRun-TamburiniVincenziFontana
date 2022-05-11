@@ -10,25 +10,25 @@ public class Socket : MonoBehaviour
     public GameObject player;
     public PlayerData playerData;
 
-    // Start is called before the first frame update
+    //La funzione start viene chiamata all'avvio dell'applicazione
     void Start()
     {
 
         socket = new WebSocket("ws://deathrun-server.glitch.me");
         socket.Connect();
 
+        //WebSocket onMessage function
         socket.OnMessage += (sender, e) =>
         {
 
-            //se il tipo di dato è testo
+            //Se il tipo di dato è testo
             if (e.IsText)
             {
                 JObject jsonObj = JObject.Parse(e.Data);
-                
-                //ottenimento id del server dati
+
                 if (jsonObj["id"] != null)
                 {
-                    //conversione dati player iniziali da json a PlayerData object
+                    //conversione dei dati iniziali del player ricevuti dal server da JSon a playerData Object
                     PlayerData tempPlayerData = JsonUtility.FromJson<PlayerData>(e.Data);
                     playerData = tempPlayerData;
                     Debug.Log("player ID is " + playerData.id);
@@ -39,7 +39,7 @@ public class Socket : MonoBehaviour
 
         };
 
-        //quando la connessione si chiude
+        //in caso di chiusura della connessione
         socket.OnClose += (sender, e) =>
         {
             Debug.Log(e.Code);
@@ -48,7 +48,7 @@ public class Socket : MonoBehaviour
         };
     }
 
-    // Update is called once per frame
+    //La funzione update esegue le istruzioni una volta per frame
     void Update()
     {
         if (socket == null)
@@ -56,15 +56,15 @@ public class Socket : MonoBehaviour
             return;
         }
 
-        //se il player è stato caricato correttamente inizio a inviare i dati al server
+        //se il player viene configurato correttamente
         if (player != null && playerData.id != "")
         {
-            //Prendo la posizione del player
+            //ottenimento della posizione del player e del timestamp attuale
             playerData.xPos = player.transform.position.x;
             playerData.yPos = player.transform.position.y;
             playerData.zPos = player.transform.position.z;
 
-            System.DateTime epochStart = new System.DateTime(1970, 1, 1, 8, 0, 0, System.DateTimeKind.Utc);
+            System.DateTime epochStart =  new System.DateTime(1970, 1, 1, 8, 0, 0, System.DateTimeKind.Utc);
             double timestamp = (System.DateTime.UtcNow - epochStart).TotalSeconds;
             playerData.timestamp = timestamp;
 
@@ -74,14 +74,13 @@ public class Socket : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.M))
         {
-            string messageJSON = "{\"message\": \"Some Message From Client\"}";
+            string messageJSON = "{\"message\": \"Messaggio dal client\"}";
             socket.Send(messageJSON);
         }
     }
 
     private void OnDestroy()
     {
-        //chiusura del socket
         socket.Close();
     }
 
